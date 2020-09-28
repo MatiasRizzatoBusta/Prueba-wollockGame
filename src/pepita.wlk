@@ -15,8 +15,7 @@ object pepita {
 		return if (self.estaEnElNido()) "pepita-grande.png" else "pepita.png"
 	}
 
-	method come(comida) {
-		comida.clear()
+	method come(comida){
 		energia = energia + comida.energiaQueOtorga()
 	}
 
