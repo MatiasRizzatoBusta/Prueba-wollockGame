@@ -1,3 +1,4 @@
+  
 import pepita.*
 import comidas.*
 import extras.*
@@ -8,11 +9,9 @@ object tutorial1 {
 	method iniciar() {
 		game.addVisual(nido)
 		game.addVisual(silvestre)
-		game.addVisual(manzana)
 		game.addVisualCharacter(pepita)
-		game.addVisual(hijo)
-		config.configurarColisiones1()
-		pepita.siguienteNivel(tutorial2) 
+		config.configurarTeclas()
+		pepita.siguienteNivel(tutorial2)
 	}
 
 }
@@ -20,16 +19,12 @@ object tutorial1 {
 object tutorial2 {
 
 	method iniciar() {
-		game.addVisualCharacter(pepita)
 		game.addVisual(manzana)
 		game.addVisual(alpiste)
 		game.addVisual(nido)
-		game.addVisual(hijo2)
-		game.addVisual(silvestre2)
+		game.addVisual(silvestre)
 		game.addVisual(pepita)
 		config.configurarTeclas()
-		config.configurarColisiones2()
-		pepita.siguienteNivel(tutorial3)
 	}
 
 }
@@ -43,36 +38,25 @@ object tutorial3 {
 		game.addVisual(silvestre)
 		game.addVisual(pepita)
 		config.configurarTeclas()
-		config.configurarColisiones1()
+		config.configurarColisiones()
 	}
 
 }
+
 
 object config {
 
 	method configurarTeclas() {
-		keyboard.up().onPressDo({pepita.irA(pepita.position().up(1))})
-		keyboard.left().onPressDo({ pepita.irA(pepita.position().left(1))})
-		keyboard.right().onPressDo({ pepita.irA(pepita.position().right(1))})
-		keyboard.down().onPressDo({pepita.irA(pepita.position().down(1))})
+		keyboard.left().onPressDo({ silvestre.mover(silvestre.position().left(1))})
+		keyboard.right().onPressDo({ silvestre.mover(silvestre.position().right(1))})
 	}
 
-	method configurarColisiones1() {
-		game.onCollideDo(manzana,{algo => algo.come(manzana)})
-		game.onCollideDo(nido,{algo => algo.pasarDeNivel()})
-		game.onCollideDo(hijo,{algo => algo.encontrarHijo()})
-		game.onCollideDo(silvestre,{algo => algo.morir()}) //se acaba el juego
+	method configurarColisiones() {
 		game.onCollideDo(pepita, { algo => algo.teEncontro(pepita)})
-	}
-	
-	method configurarColisiones2() {
-		game.onCollideDo(alpiste,{algo => algo.come(alpiste)})
-		game.onCollideDo(manzana,{algo => algo.come(manzana)})
 		game.onCollideDo(nido,{algo => algo.pasarDeNivel()})
-		game.onCollideDo(hijo2,{algo => algo.encontrarHijo()})
-		game.onCollideDo(silvestre2,{algo => algo.morir()}) //se acaba el juego
-		game.onCollideDo(pepita, { algo => algo.teEncontro(pepita)})
+		game.onCollideDo(silvestre,{algo => algo.cambiarAVisualGris()})
 	}
 
 }
+
 

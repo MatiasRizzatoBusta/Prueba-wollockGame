@@ -9,10 +9,12 @@ object pepita {
 	var encontroHijo = false
 	var nivelQueSigue
 	
+	
+	
 	method mostrarSig() = nivelQueSigue 
 
 	method image() {
-		return if (self.estaEnElNido()) "pepita-grande.png" else "pepita.png"
+		return if (self.estaEnElNido()) "pepita-grande.png" else if(self.esAtrapada()) "pepita-gris.png" else "pepita.png"
 	}
 
 	method come(comida){
@@ -36,6 +38,10 @@ object pepita {
 		return position == nido.position()
 	}
 	
+	method esAtrapada(){
+		return position == silvestre.position()
+	}
+	
 	method encontrarHijo(){
 		encontroHijo = true
 	}
@@ -43,7 +49,7 @@ object pepita {
 	method estadoHijo() = encontroHijo
 	
 	method pasarDeNivel(){
-		if(encontroHijo and self.estaEnElNido()){
+		if(self.estaEnElNido()){
 			game.clear()
 			self.mostrarSig().iniciar()
 		}

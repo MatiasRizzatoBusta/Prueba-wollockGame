@@ -13,28 +13,23 @@ object nido {
 }
 
 object silvestre {
+	
+	var property position = game.at(3, 0) //lo trato como method
+	var property direccionMov
 
 	method image() = "silvestre.png"
-	
-	method position() = game.at(3, 0)
+
 	
 	method teEncontro(alguien){
 		game.say(self,"te atrape!")
 	}
-
-}
-
-object silvestre2{
-
-	method image() = "silvestre.png"
 	
-	method position() = game.at(5, 3)
-	
-	method teEncontro(alguien){
-		game.say(self,"te atrape!")
+	method mover(pos){
+		position = pos
 	}
-
 }
+
+
 
 object hijo{
 	method image() = "hijo.png"
@@ -45,17 +40,6 @@ object hijo{
 		game.say(alguien,"te encontre!")
 	}
 }
-
-object hijo2{
-	method image() = "hijo.png"
-	
-	method position() = game.at(5,6)
-	
-	method teEncontro(alguien){
-		game.say(alguien,"te encontre!")
-	}
-}
-
 
 class Comida{
 	var calorias
