@@ -46,7 +46,7 @@ object tutorial3 {
 
 object config {
 
-	method configurarTeclas() {
+	method configurarTeclas() { //como hacer que no se pueda mover mas alla de x = 3?
 		keyboard.left().onPressDo({ silvestre.mover(silvestre.position().left(1))})
 		keyboard.right().onPressDo({ silvestre.mover(silvestre.position().right(1))})
 	}
